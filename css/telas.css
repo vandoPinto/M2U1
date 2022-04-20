@@ -1,12 +1,9 @@
 /* @import url(http://fonts.googleapis.com/css?family=Poppins:400,100,100italic,700,700bold,800bold,500,500bold); */
 /* @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap); */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,500&display=swap');
 
 @font-face {
-    font-family: "Open Sans", sans-serif;
-}
-
-@font-face {
+    font-family: 'Open Sans';
     font-family: "Poppins";
     src: url("../recursos/fonts/Poppins-Regular.ttf");
 }
