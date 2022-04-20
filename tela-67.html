@@ -1,3 +1,14 @@
+<style>
+    .jan {
+        z-index: 30;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, .8);
+    }
+</style>
 <div style="height: 60px;width: 100%;">
     <img style="height: 60px;position: absolute;right: 0px;" src="recursos/imgs/H1.png">
     <p style="position: absolute;color: white;margin-left: 42px;margin-top: 26px;font-size: 12px;">TÓPICO<strong>
@@ -25,6 +36,62 @@
     <p>Clique nos dados a seguir para conhecer seus indicadores:</p>
     <img src="recursos/imgs/img-slide-67.svg" style="margin-left: 50px;width: 690px;">
 </div>
+<div>
+    <div id="botao_1" style="width: 140px; height: 142px; position: absolute; top: 290px; left: 114px;">
+    </div>
+    <div id="botao_2" style="width: 140px; height: 150px; position: absolute; top: 290px; left: 282px;">
+    </div>
+    <div id="botao_3" style="width: 140px; height: 150px; position: absolute; top: 290px; left: 459px;">
+    </div>
+    <div id="botao_4" style="width: 140px; height: 150px; position: absolute; top: 290px; left: 638px;">
+    </div>
+</div>
+<div>
+    <div class="jan" id="janela_1" style="cursor: pointer;">
+        <div
+            style="position: absolute; top: 190px; left: 260px; width: 398px;height: 124px;background: #294667 0% 0% no-repeat padding-box;   border-radius: 10px; ">
+            <p style="margin-top: 10px;margin-left: 130px;color: #FFFFFF;">SOCIOECONÔMICOS</p>
+            <p style="color: white;font-size: 12px;margin-top: 10px;margin-left: 50px;width: 294px;">
+                População estimada no território. Taxa de população abaixo da linha da pobreza. Taxa de população
+                ocupada. Percentual de
+                população negra. Taxa de desemprego.</p>
+            <p style="font-size: 13px;color: white;margin-top: -100px;margin-left: 380px;">x</p>
+        </div>
+    </div>
+    <div class="jan" id="janela_2" style="cursor: pointer;">
+        <div
+            style="position: absolute; top: 190px; left: 260px; width: 398px;height: 124px;background: #1B858D 0% 0% no-repeat padding-box;   border-radius: 10px; ">
+            <p style="margin-top: 10px;margin-left: 180px;color: #FFFFFF;">SAÚDE</p>
+            <p style="color: white;font-size: 12px;margin-top: -10px;margin-left: 80px;width: 224px;">
+                Taxa de mortalidade infantil. Taxa de mortalidade materna. Expectativa de vida. Número de gestantes
+                realizando
+                pré-natal. Índice de envelhecimento. Taxa de cobertura vacinal. Número de hipertensos.</p>
+            <p style="font-size: 13px;color: white;margin-top: -120px;margin-left: 380px;">x</p>
+        </div>
+    </div>
+    <div class="jan" id="janela_3" style="cursor: pointer;">
+        <div
+            style="position: absolute; top: 190px; left: 260px; width: 398px;height: 100px;background: #3A6487 0% 0% no-repeat padding-box;   border-radius: 10px; ">
+            <p style="margin-top: 10px;margin-left: 170px;color: #FFFFFF;">EDUCAÇÃO</p>
+            <p style="color: white;font-size: 12px;margin-top: 10px;margin-left: 90px;width: 294px;">
+                Número de analfabetismo. Taxa de escolarização de 6 a 14 anos.</p>
+            <p style="font-size: 13px;color: white;margin-top: -71px;margin-left: 380px;">x</p>
+        </div>
+    </div>
+    <div class="jan" id="janela_4" style="cursor: pointer;">
+        <div
+            style="position: absolute; top: 190px; left: 260px; width: 398px;height: 109px;background: #108141 0% 0% no-repeat padding-box;   border-radius: 10px; ">
+            <p style="margin-top: 10px;margin-left: 170px;color: #FFFFFF;">AMBIENTAL</p>
+            <p style="color: white;font-size: 12px;margin-top: 10px;margin-left: 110px;width: 294px;">
+                Acesso à água tratada.</p>
+            <p style="color: white;font-size: 12px;margin-left: 110px;margin-top: -10px;">
+                Acesso à rede de esgoto.</p>
+            <p style="color: white;font-size: 12px;margin-top: -10px;margin-left: 110px;">
+                Acesso à coleta de lixo.</p>
+            <p style="font-size: 13px;color: white;margin-top: -91px;margin-left: 380px;">x</p>
+        </div>
+    </div>
+</div>
 <footer style="width: 1008px;height: 19px;display: flex;background-color: #0D536A;">
     <div style="margin-top: -8px;display: flex;margin-left: 42px;">
         <p style="color: white;font-size: 12px;">MÓDULO 2</p>
@@ -34,3 +101,28 @@
         <p style="margin-left: 15px;color: white;font-size: 11px;margin-top: 12px;">TERRITÓRIO</p>
     </div>
 </footer>
+<script>
+    $(() => {
+        let janelas = $(document).find('[id^=janela]').css('cursor', 'pointer').on("click", apagarJanelas);
+        apagarJanelas();
+        $(document).find('[id^=btn]').hide();
+        let botoes = $(document).find('[id^=botao]').map((index, botao) => {
+            $(botao).css('cursor', 'pointer');
+            $(botao).hover(() => {
+                $(document).find(`[id=btn_${index + 1}_2]`).show();
+            });
+            $(botao).mouseleave(() => {
+                $(document).find('[id^=btn]').hide();
+            });
+            $(botao).click(() => {
+                apagarJanelas();
+                $(janelas[index]).fadeIn();
+            })
+        })
+        function apagarJanelas() {
+            janelas.map((index, janela) => {
+                $(janela).hide();
+            })
+        }
+    })
+</script>
