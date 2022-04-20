@@ -25,8 +25,8 @@
             mantidas sob confidencialidade ética (DISTRITO FEDERAL, 2019, p. 12).</p>
     </div>
     <div style="margin-top: 21px;margin-right: 100px;">
-        <div style="display: none;">
-            <img src="recursos/imgs/img-slide-64.png" >
+        <div id="janela_1">
+            <img src="recursos/imgs/img-slide-64.png">
             <div
                 style="width: 295px;height: 25px;background: rgba(47, 85, 121, .46);position: absolute;top: 351px;color: white;">
                 <p
@@ -34,8 +34,8 @@
                     Mapa Artesanal UBS 15 - Rio Preto - GSAP 05</p>
             </div>
         </div>
-        <div>
-            <img src="recursos/imgs/img-2-slide-64.png" >
+        <div id="janela_2">
+            <img src="recursos/imgs/img-2-slide-64.png">
             <div
                 style="width: 295px;height: 25px;background: rgba(47, 85, 121, .46);position: absolute;top: 351px;color: white;">
                 <p
@@ -44,15 +44,15 @@
             </div>
         </div>
         <div style="margin-top: 10px;margin-left: 110px;display: flex;justify-content: space-between;width: 83px;">
-            <div>
+            <div id="botao_1">
                 <img src="recursos/imgs/img-slide-64.png" style="width: 40px;">
-                <div
+                <div id="cirulo_1"
                     style="margin: 0 auto;margin-top: 10px;border-radius: 50%;width: 10px;height: 10px;background: #2F5579 0% 0% no-repeat padding-box;">
                 </div>
             </div>
-            <div>
+            <div id="botao_2">
                 <img src="recursos/imgs/img-2-slide-64.png" style="width: 40px;">
-                <div
+                <div id="cirulo_2"
                     style="margin: 0 auto;margin-top: 10px;border-radius: 50%;width: 10px;height: 10px;background: #2F5579 0% 0% no-repeat padding-box;">
                 </div>
             </div>
@@ -68,3 +68,34 @@
         <p style="margin-left: 15px;color: white;font-size: 11px;margin-top: 12px;">TERRITÓRIO</p>
     </div>
 </footer>
+<script>
+    $(() => {
+        let cirulos = $('[id^=cirulo]')
+        let janelas = $(document).find('[id^=janela]').css('cursor', 'pointer').on("click", apagarJanelas);
+        apagarJanelas();
+        $(janelas[0]).show();
+        $(document).find('[id^=btn]').hide();
+        let botoes = $(document).find('[id^=botao]').map((index, botao) => {
+            $(botao).css('cursor', 'pointer');
+            $(botao).hover(() => {
+                $(document).find(`[id=btn_${index + 1}_2]`).show();
+            });
+            $(botao).mouseleave(() => {
+                $(document).find('[id^=btn]').hide();
+            });
+            $(botao).click(() => {
+                apagarJanelas();
+                $(janelas[index]).fadeIn();
+                $(cirulos[index]).css('background', '#FFA800');
+            })
+        })
+        $(cirulos[0]).css('background', '#FFA800');
+
+        function apagarJanelas() {
+            janelas.map((index, janela) => {
+                $(janela).hide();
+                $(cirulos[index]).css('background', '#2F5579');
+            })
+        }
+    })
+</script>
