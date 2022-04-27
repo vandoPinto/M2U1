@@ -71,7 +71,7 @@
 <script>
     $(() => {
         let cirulos = $('[id^=cirulo]')
-        let janelas = $(document).find('[id^=janela]').css('cursor', 'pointer').on("click", apagarJanelas);
+        let janelas = $(document).find('[id^=janela]').css('cursor', 'pointer')//.on("click", apagarJanelas);
         apagarJanelas();
         $(janelas[0]).show();
         $(document).find('[id^=btn]').hide();
